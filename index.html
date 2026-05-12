@@ -85,7 +85,7 @@ function gameLoop() {
   };
 
   // wrap around edges
-  if (head.x < 0) head.x = tileCount - 1;
+  if (head.x < 0) head.x = tileCount - 2;
   if (head.x >= tileCount) head.x = 0;
   if (head.y < 0) head.y = tileCount - 1;
   if (head.y >= tileCount) head.y = 0;
