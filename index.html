@@ -84,11 +84,11 @@ function gameLoop() {
     y: snake[0].y + vy
   };
 
-  // wrap around edges
-  if (head.x < 0) head.x = tileCount - 2;
-  if (head.x >= tileCount) head.x = 0;
-  if (head.y < 0) head.y = tileCount - 1;
-  if (head.y >= tileCount) head.y = 0;
+  // wall collision
+  if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+    gameOver();
+    return;
+  }
 
   snake.unshift(head);
 
@@ -109,13 +109,17 @@ function gameLoop() {
   // self collision
   for (let i = 1; i < snake.length; i++) {
     if (snake[i].x === head.x && snake[i].y === head.y) {
-      alert("Game Over!");
-      document.location.reload();
+      gameOver();
       return;
     }
   }
 
   draw();
+}
+
+function gameOver() {
+  alert("Game Over!");
+  document.location.reload();
 }
 
 function draw() {
